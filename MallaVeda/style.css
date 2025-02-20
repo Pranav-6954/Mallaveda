@@ -1,0 +1,655 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+html
+{
+    scroll-behavior: smooth;
+}
+body
+{
+    min-height: 100vh;
+    font-family: "Montserrat", serif;
+    background-color: white;
+    overflow-x: hidden;
+}
+nav
+{
+    background-color: red;
+    font-family: "Montserrat", serif;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+nav ul
+{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+nav li
+{
+    height: 60px;
+}
+nav a
+{
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: black;
+    opacity: 0.7;
+    font-weight: 500;
+    font-size: 20px;
+}
+nav a:hover
+{
+    opacity: 1;
+    color: white;
+}
+nav img
+{
+    width: 6rem;
+    height: 100%;
+    
+}
+nav li:first-child
+{
+    margin-right: auto;
+}
+
+.sidebar
+{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.sidebar li
+{
+    width: 100%;
+}
+.sidebar a
+{
+    width: 100%; 
+}
+.menu-button
+{
+    display: none;
+}
+@media(max-width: 800px)
+{
+    .hide
+    {
+        display: none;
+    }
+    .menu-button
+    {
+        display: block;
+    }
+}
+
+@media(max-width: 400px)
+{
+    .hide
+    {
+        width: 100%;
+    }
+}
+
+.Home
+{
+    display: flex;
+
+}
+
+.image #Hero
+{
+    height: 650px;
+    margin-left: 50px;
+    margin-top: 100px;
+}
+
+.tagline h1
+{
+    font-family: "Montserrat", serif;
+    color: black;
+    background-color: none;
+    position: relative;
+    top: 230px;
+    left: 160px;
+    font-size: 5rem;
+    font-weight: 600;
+}
+.tagline p  
+{
+    color: black;
+    position: relative;
+    top: 225px;
+    left: 275px;
+    font-size: 4.5rem; 
+    font-weight: 100; 
+    font-style: italic;  
+}
+
+.tagline a
+{
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3rem;
+    position: relative;
+    top: 240px;
+    left: 415px;
+    font-size: 1.5rem;
+    height: 3rem;
+    width: 12rem; 
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* opacity: 0.7; */
+}
+.tagline a:hover
+{
+    box-shadow: 0px 4px 16px gold;
+}
+
+@media(max-width: 400px)
+{
+    .image #Hero
+    {
+        height: 600px;
+        width: 175px;
+        margin-left: 0;
+        margin-top: 70px;
+        display: flex;
+    }
+}
+
+@media(max-width: 400px)
+{
+    .tagline h1
+    {
+        font-size: 19px;
+        position: relative;
+        left: -30px;
+        top: 260px;
+    }
+    .tagline p  
+    {
+        font-size: 22px;
+        position: relative;
+        left: -20px;
+        top: 270px;
+    }
+    
+}
+
+@media(max-width: 400px)
+{
+    .tagline a
+    {
+        font-weight: 750;
+        font-size: 12px;
+        position: relative;
+        left: -5px;
+        top: 290px;
+    }
+}
+
+/* #about
+{
+    position: relative;
+    top: 600px;
+    height: 150px;
+    width: 100%; 
+} */
+#about img
+{
+    height: 40rem;
+    position: relative;
+}
+#about .disc
+{
+    color: black;
+    width: 50rem;
+    height: 10rem;
+    position: relative;
+    bottom: 32rem;
+    left: 42rem;
+    font-size: 2.6rem;
+    line-height: 3rem;
+    text-align: justify;
+}
+@media(max-width: 400px)
+{
+    #about img
+    {
+        height: 440px;
+        width: 150px;
+        margin-left: 0;
+        margin-top: 150px;
+        display: flex;
+        
+    }
+}
+
+@media(max-width: 400px)
+{
+    #about .disc
+    {
+        font-size: 15px;
+        line-height: 20px;
+        height: 200px;
+        width: 150px;
+        margin-top: 150px;
+        margin-left: -500px;
+        position: relative;
+        top: -550px;
+    }
+}
+
+.physical-health h1
+{
+    font-weight: 700;
+    font-size: 100px;
+    text-align: center;
+    color: #333333;
+    position: relative;
+    top: 70px;
+}
+
+.cards
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    position: relative;
+    top: 75px;
+}
+.activity
+{
+    border:2px solid black;
+    /* display:inline-block; */
+    margin: 10px;
+    height: 400px;
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px black ;
+    transition: 1s;
+}
+.activity img
+{
+    height:250px;
+    width:100%;
+    border-radius:5px;       
+}
+.disc 
+{
+    padding: 0px 2px 0px 20x;
+    text-align: center;
+}
+.disc a
+{
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    top: 10px;
+    border-radius: 20px;
+}
+.activity:hover
+{
+    box-shadow: 0px 4px 16px gold;
+}
+
+@media(max-width: 400px)
+{
+    .physical-health h1
+    {
+        font-size: 40px;
+        position: relative;
+        top: -200px;
+    }
+    .activity
+    {
+        height: 250px;
+        width: 100px;
+        position: relative;
+        top: -150px;
+    }
+    .activity img
+    {
+        height: 100px;
+        width: 100%;
+    }
+    .disc 
+    {
+        font-size: 10px;
+    }
+    #one a
+    {
+        font-size: 8px;
+        position: relative;
+        top: -25px;
+    }
+    #two a
+    {
+        font-size: 8.5px;
+        position: relative;
+        top: 25px;
+    }
+    #three a
+    {
+        font-size: 8.5px;
+        position: relative;
+        top: 40px;
+    }
+    /* .disc a 
+    {
+        font-size: 8px;
+        position: relative;
+        top: 15px;
+    } */
+}
+
+.mental-health h1
+{
+    font-weight: 700;
+    font-size: 80px;
+    text-align: center;
+    color: #333333;
+    position: relative;
+    top: 190px;
+}
+ 
+.m-cards
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    top: 180px;
+}
+
+.m-activity
+{
+    border:2px solid black;
+    /* display:inline-block; */
+    margin: 10px;
+    height: 425px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px black ;
+    transition: 1s;
+}
+.m-activity img
+{
+    height:250px;
+    width:100%;
+    border-radius:5px;       
+}
+.m-disc 
+{
+    padding: 0px 2px 0px 20x;
+    text-align: center;
+}
+.m-disc a
+{
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    top: 10px;
+    border-radius: 20px;
+}
+.m-activity:hover
+{
+    box-shadow: 0px 4px 16px gold;
+}
+
+.contact_us
+{
+    position: relative;
+    bottom: -110px;
+}
+
+
+
+@media(max-width: 400px)
+{
+    .mental-health h1
+    {
+        font-size: 40px;
+        position: relative;
+        top: 25px;
+    }
+    .m-activity
+    {
+        height: 300px;
+        width: 100px;
+        position: relative;
+        top: -150px;
+    }
+    .m-activity img
+    {
+        height: 100px;
+        width: 100%;
+    }
+    .m-disc 
+    {
+        font-size: 10px;
+    }
+    #one a
+    {
+        font-size: 8.5px;
+        position: relative;
+        top: 35px;
+    }
+    #two a
+    {
+        font-size: 8.5px;
+        position: relative;
+        top: 9px;
+    }
+    #three a
+    {
+        font-size: 8.5px;
+        position: relative;
+        top: 15px;
+    }
+    /* .disc a 
+    {
+        font-size: 8px;
+        position: relative;
+        top: 15px;
+    } */
+}
+
+
+.contact_us h1
+{
+    font-weight: 700;
+    font-size: 80px;
+    text-align: center;
+    color: #333333;
+    position: relative;
+    top: 160px;
+}
+ 
+.s-cards
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    top: 170px;
+}
+
+.social_media
+{
+    border:2px solid black;
+    /* display:inline-block; */
+    margin: 10px;
+    height: 425px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px black ;
+    transition: 1s;
+}
+.social_media img
+{
+    height:250px;
+    width:100%;
+    border-radius:5px;       
+}
+.s-disc 
+{
+    padding: 0px 2px 0px 20x;
+    text-align: center;
+}
+.s-disc a
+{
+    text-decoration: none;
+    /* background-color: red; */
+    
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    top: 10px;
+    border-radius: 20px;
+}
+
+.social_media:hover
+{
+    box-shadow: 0px 4px 16px gold;
+}
+
+@media(max-width: 400px)
+{
+    .contact_us h1
+    {
+        font-size: 40px;
+        position: relative;
+        top: 25px;
+    }
+    .social_media
+    {
+        height: 200px;
+        width: 100px;
+        position: relative;
+        top: -150px;
+    }
+    .social_media img
+    {
+        height: 100px;
+        width: 100%;
+    }
+    .s-disc 
+    {
+        font-size: 10px;
+    }
+    #one a
+    {
+        font-size: 8.5px;
+        position: relative;
+        top: 35px;
+    }
+    #two a
+    {
+        font-size: 5px;
+        position: relative;
+        top: 9px;
+    }
+    #three a
+    {
+        font-size: 7px;
+        position: relative;
+        top: 15px;
+    }
+    /* .disc a 
+    {
+        font-size: 8px;
+        position: relative;
+        top: 15px;
+    } */
+}
+
+
+/* CHAT BOT */
+.chatbot-popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 0 10px red;
+    z-index: 1000;
+}
+
+#chatbot-header {
+    background-color: red;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbot-messages {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    color: red;
+}
+
+#chatbot-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#chatbot-toggle 
+{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 75px;
+    width: 75px;
+    background-color: red;
+    color: white ;
+    font-weight: bolder;
+    font-size: larger;
+    border-radius: 50% 0 0 0;
+}

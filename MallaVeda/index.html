@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallaVeda</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="styles1.css"> -->
+
+    <link rel="icon" href="Malla_Veda__1_-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <ul class="sidebar">
+                <li onclick=hidesidebar()><a href="#"><i class="fa-solid fa-xmark"></i></a></li>
+                <li><a href="#Home" class="Link">Home</a></li>
+                <li><a href="#about" class="Link">About us</a></li>
+                <li><a href="#physical-health" class="Link">Physical Health</a></li>
+                <li><a href="#mental-health" class="Link">Mental Health</a></li>
+                <li><a href="#diet" class="Link">Diet</a></li>
+                <li><a href="#contact_us" class="Link">Contact us</a></li>
+            </ul>
+            <ul class="sidebar2">
+                <li><img src="ASSET/Malla_Veda__1_-removebg-preview.png"></li>
+                <li class="hide"><a href="#Home" class="Link">Home</a></li>
+                <li class="hide"><a href="#about" class="Link">About us</a></li>
+                <li class="hide"><a href="#physical-health" class="Link">Physical Health</a></li>
+                <li class="hide"><a href="#mental-health" class="Link">Mental Health</a></li>
+                <li class="hide"><a href="#diet" class="Link">Diet</a></li>
+                <li class="hide"><a href="#contact_us" class="Link">Contact us</a></li>
+                <li class="menu-button" onclick=showSidebar()><a href="#"><i class="fa-solid fa-bars"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+   
+<button id="chatbot-toggle" onclick="toggleChatbot()">?</button>
+
+<div id="chatbot-popup" class="chatbot-popup">
+    <div id="chatbot-header">
+        <span>MallaVeda</span>
+        <button onclick="toggleChatbot()">X</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <input id="chatbot-input" type="text" placeholder="Type a message..." onkeypress="checkEnter(event)">
+</div>
+
+<script src="script1.js" defer></script>
+
+    <div class="Home" id="Home">
+        <div class="image">
+            <img src="ASSET/fitman1-removebg-preview.png" id="Hero">
+        </div>
+        <div class="tagline">
+            <h1>MAKE YOUR BODY </h1>
+            <p>FIT & PERFECT</p>
+            <a href="#about">Get Started Now</a>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about">
+        <img src="ASSET/Malla_Veda__1_-removebg-preview.png">
+        <div class="disc">Welcome to MallaVeda! We’re dedicated to helping you achieve your health and fitness goals
+            with expert guidance, personalized workouts and nutrition support. Whether you're a beginner or a pro, 
+            our community and resources empower you to stay motivated and strong. Start your journey to a 
+            healthier you today!</div>
+    </div>
+    
+    <!-- PHYSICAL HEALTH -->
+     <div class="physical-health" id="physical-health">
+        <h1>Physical Health</h1>
+        <div class="cards">
+            <div class="activity">
+                <img src="ASSET/Cardio.png">
+                <div class="disc" id="one">
+                    <h3>Aerobic (Cardio) Exercise</h3>
+                    <p>Improve Heart & Lungs function, Endurace and Stamina</p>
+                    <a href="Aerobic.html">Get Started Now</a>
+                </div>
+            </div>
+
+            <div class="activity">
+                <img src="ASSET/Strength.png">
+                <div class="disc" id="two">
+                    <h3>Strength (Resistance) Training</h3>
+                    <p>Build Muscel Strength and Bone Density</p>
+                    <a href="#" id="two">Get Started Now</a>
+                </div>
+            </div>
+
+            <div class="activity">
+                <img src="ASSET/Yoga.png">
+                <div class="disc" id="three">
+                    <h3>Yoga</h3>
+                    <p>Build Strength, Balance, Focous, Realaxation, Posture, Wellness</p>
+                    <a href="#" >Get Started Now</a>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+    <!-- MENTAL HEALTH -->
+    <div class="mental-health" id="mental-health">
+        <h1>Mental Health</h1>
+        <div class="m-cards">
+            <div class="m-activity">
+                <img src="ASSET/Sound Healing & Vibrational Therapies.png">
+                <div class="m-disc" id="one">
+                    <h3>Sound Healing & Vibrational Therapies</h3>
+                    <p>Build Relaxation, mental clarity, emotional balance and physical well-being.</p><br>
+                    <a href="Aerobic.html">Get Started Now</a>
+                </div>
+            </div>
+
+            <div class="m-activity">
+                <img src="ASSET/Meditation Practices.png">
+                <div class="m-disc" id="two">
+                    <h3>Meditation Practices</h3><br>
+                    <p>Meditation is practiced for mental clarity, emotional balance, stress reduction and spiritual growth</p><br>
+                    <a href="#" id="two">Get Started Now</a>
+                </div>
+            </div>
+
+            <div class="m-activity">
+                <img src="ASSET/Sleep Meditation .png">
+                <div class="m-disc" id="three">
+                    <h3>Sleep Meditation & Guided Relaxation</h3>
+                    <p>To calm the mind, reduce stress and prepare the body for restful sleep</p><br><br>
+                    <a href="#" >Get Started Now</a>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    
+     <!-- DIET
+      <div class="diet" id="diet">
+        <br>
+        <br>
+        <br>
+        <br><br><br><br><br><br>
+        <h1>ASK QUESTIONS</h1>
+        <div class="d-card">
+           <div class="d-plan">
+             <img src="ASSET/Diet.png">
+            <div class="d-disc">
+                <a href="#">ASK YOUR QUESTIONS</a>
+            </div>
+           </div>
+        </div>
+      </div> -->
+
+    <!-- CONTACT US -->
+    <div class="contact_us" id="contact_us">
+        <h1>CONTACT US</h1>
+        <div class="s-cards">
+            <div class="social_media">
+                <img src="ASSET/SOCIAL_MEDIA.png">
+                <div class="s-disc" id="one">
+                    <a href="#"><i class="fa-brands fa-facebook"></i> &nbsp;Malla_Veda</a><br><br>
+                    <a href="#"><i class="fa-brands fa-twitter"> </i>&nbsp;MallaVeda</a><br><br>
+                    <a href="#"><i class="fa-brands fa-instagram"> </i>&nbsp;Malla_Veda_ig</a><br><br>
+                    <a href="#"><i class="fa-brands fa-youtube"></i> &nbsp;Malla Veda</a><br><br>
+                </div>
+            </div>
+
+            <div class="social_media">
+                <img src="ASSET/MAIL.png">
+                <div class="s-disc" id="two">
+                    <a href="#"><i class="fa-solid fa-envelope"></i>&nbsp; mallaveda@gmail.com</a><br><br>
+                    <a href="#"><i class="fa-solid fa-envelope"></i>&nbsp; pranavwabale08@gmail.com</a><br><br>
+                </div>
+            </div>
+
+            <div class="social_media">
+                <img src="ASSET/PHONE.png">
+                <div class="s-disc" id="three">
+                    <a href="#"><i class="fa-solid fa-phone"></i> &nbsp;&nbsp;+91 9545140193</a><br><br>
+                    <a href="#"><i class="fa-solid fa-phone"></i> &nbsp;&nbsp;+91 7498811926</a><br><br>
+                    <a href="#"><i class="fa-solid fa-phone"></i> &nbsp;&nbsp;+91 9322990408</a><br><br>
+                    <a href="#"><i class="fa-solid fa-phone"></i> &nbsp;&nbsp;+91 7020808413</a><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+
+
+
+
+
+    <script>
+        function showSidebar()
+        {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = 'flex';
+        }
+        function hidesidebar()
+        {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
+
+
+
