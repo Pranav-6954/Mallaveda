@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP4 Video Player</title>
+    <link rel="stylesheet" href="Meditation.css">
+</head>
+<body>
+
+
+    <!-- Video 1 -->
+    <div class="video-container">
+        <h1>Pranayama</h1>
+        <p><strong>Pranayama is a powerful yogic practice that enhances physical health, reduces stress, and promotes mental clarity. By controlling the breath, it balances energy, improves lung function, and supports emotional well-being. Regular practice leads to a healthier, calmer, and more focused life.
+        </strong></p>
+        <video id="video1" src="ASSET/Pranayama.mp4" controls></video><br>
+        <button onclick="playVideo('video1')">▶ Play</button>
+        <button onclick="pauseVideo('video1')">⏸ Pause</button>
+    </div>
+
+    
+
+    <script>
+        function playVideo(videoId) {
+            let video = document.getElementById(videoId);
+            video.play();
+        }
+
+        function pauseVideo(videoId) {
+            let video = document.getElementById(videoId);
+            video.pause();
+        }
+    </script>
+
+</body>
+</html>

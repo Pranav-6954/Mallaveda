@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple MP3 Sound Player</title>
+    <link rel="stylesheet" href="sleep.css">
+</head>
+<body>
+
+    <h1>Sleep Meditation & Guided Relaxation</h1>
+
+    <!-- Sound 1 -->
+    <div class="audio-container">
+        <h1>OM CHANTING</h1>
+        <p><strong>OM chanting is a simple yet powerful tool for achieving deep, restful sleep. It calms the mind, relaxes the body,<br>
+            and prepares you for a night of undisturbed sleep. Try chanting before bed for 5–10 minutes, and you’ll experience better sleep quality over time!</strong></p>
+        <button onclick="playSound('audio1')">▶ Play</button>
+        <button onclick="pauseSound('audio1')">⏸ Pause</button>
+        <audio id="audio1" src="ASSET/OM Chanting.mp3"></audio>
+    </div>
+
+    <!-- Sound 2 -->
+    <div class="audio-container">
+        <h1> Theta Waves & Binaural Beats for Sleep</h1>
+        <p><strong>Theta waves and binaural beats help slow brain activity, reduce stress, and promote deep relaxation, making it easier to fall asleep. Listening to these frequencies before bed enhances sleep quality, emotional healing, and mental calmness. Incorporating them into your routine can naturally improve rest and overall well-being</strong></p>
+        <button onclick="playSound('audio2')">▶ Play</button>
+        <button onclick="pauseSound('audio2')">⏸ Pause</button>
+        <audio id="audio2" src="ASSET/Relaxing.mp3"></audio>
+    </div>
+
+    <!-- Sound 3
+    <div class="audio-container">
+        <p><strong>Sound 3</strong></p>
+        <button onclick="playSound('audio3')">▶ Play</button>
+        <button onclick="pauseSound('audio3')">⏸ Pause</button>
+        <audio id="audio3" src="sound3.mp3"></audio>
+    </div>
+
+    Sound 4 
+    <div class="audio-container">
+        <p><strong>Sound 4</strong></p>
+        <button onclick="playSound('audio4')">▶ Play</button>
+        <button onclick="pauseSound('audio4')">⏸ Pause</button>
+        <audio id="audio4" src="sound4.mp3"></audio> 
+    </div>  -->
+
+    <script>
+        function playSound(audioId) {
+            let audio = document.getElementById(audioId);
+            audio.play();
+        }
+
+        function pauseSound(audioId) {
+            let audio = document.getElementById(audioId);
+            audio.pause();
+        }
+    </script>
+
+</body>
+</html>

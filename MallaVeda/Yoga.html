@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP4 Video Player</title>
+    <link rel="stylesheet" href="Yoga.css">
+</head>
+<body>
+
+    <h1>YOGA</h1>
+
+    <!-- Video 1 -->
+    <div class="video-container">
+        <h2>Surya Namskar</h2>
+        <p><strong>Surya Namaskar is a powerful full-body workout that enhances strength, flexibility, and metabolism while promoting mental clarity and stress relief. It improves digestion, heart health, and posture, making it a complete mind-body exercise. Practicing it daily boosts energy, balances chakras, and connects you with nature. Just a few rounds every morning can transform your health and well-being!</strong></p>
+        <video id="video1" src="ASSET/Surya Namaskar.mp4" controls></video><br>
+        <button onclick="playVideo('video1')">▶ Play</button>
+        <button onclick="pauseVideo('video1')">⏸ Pause</button>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-container">
+        <h2>Bhadrasana</h2>
+        <p><strong>Bhadrasana (Butterfly Pose) improves flexibility in the hips, thighs, and groin, making it great for pelvic health and posture. It calms the mind, reduces stress, and aids digestion, making it beneficial for both physical and mental well-being. Regular practice enhances spinal alignment and relaxation. 🧘‍♂️✨
+        </strong></p>
+        <video id="video2" src="ASSET/Bhadrasana,.mp4" controls></video><br>
+        <button onclick="playVideo('video2')">▶ Play</button>
+        <button onclick="pauseVideo('video2')">⏸ Pause</button>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-container">
+        <h2>Vrikshasana</h2>
+        <p><strong>Vrikshasana (Tree Pose) enhances balance, stability, and concentration while strengthening the legs, core, and spine. It improves posture, boosts mental focus, and promotes inner calm. Regular practice helps reduce stress, increase flexibility, and build overall body awareness. 🌳🧘‍♂️✨</strong></p>
+        <video id="video3" src="ASSET/Vrikshasana.mp4" controls></video><br>
+        <button onclick="playVideo('video3')">▶ Play</button>
+        <button onclick="pauseVideo('video3')">⏸ Pause</button>
+    </div>
+
+    
+
+    <script>
+        function playVideo(videoId) {
+            let video = document.getElementById(videoId);
+            video.play();
+        }
+
+        function pauseVideo(videoId) {
+            let video = document.getElementById(videoId);
+            video.pause();
+        }
+    </script>
+
+</body>
+</html>

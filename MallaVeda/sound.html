@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple MP3 Sound Player</title>
+    <link rel="stylesheet" href="sleep.css">
+</head>
+<body>
+
+    <h1>Sound Healing & Vibrational Therapies</h1>
+
+    <!-- Sound 1 -->
+    <div class="audio-container">
+        <h1>Indian Flute Meditation Music</h1>
+        <p><strong>The Indian flute (Bansuri) has been used for centuries in meditation, spiritual practices, and healing. Its soft, melodic tones create a deep sense of peace, relaxation, and inner harmony.
+        </strong></p>
+        <button onclick="playSound('audio2')">▶ Play</button>
+        <button onclick="pauseSound('audio2')">⏸ Pause</button>
+        <audio id="audio2" src="ASSET/Flute.mp3"></audio>
+    </div>
+
+
+    <!-- Sound 2 -->
+    <div class="audio-container">
+        <h2>Singing Bowls (Tibetan & Crystal)</h2>
+        <p><strong>Singing bowls are powerful tools for holistic healing, meditation, and self-care. Whether you seek calmness, energy alignment, or spiritual awakening, their pure vibrations can guide you to a state of balance and peace</strong></p>
+        <button onclick="playSound('audio1')">▶ Play</button>
+        <button onclick="pauseSound('audio1')">⏸ Pause</button>
+        <audio id="audio1" src="ASSET/Singing Bowl.mp3"></audio>
+    </div>
+
+    <!-- Sound 3
+    <div class="audio-container">
+        <p><strong>Sound 3</strong></p>
+        <button onclick="playSound('audio3')">▶ Play</button>
+        <button onclick="pauseSound('audio3')">⏸ Pause</button>
+        <audio id="audio3" src="sound3.mp3"></audio>
+    </div>
+
+    Sound 4 
+    <div class="audio-container">
+        <p><strong>Sound 4</strong></p>
+        <button onclick="playSound('audio4')">▶ Play</button>
+        <button onclick="pauseSound('audio4')">⏸ Pause</button>
+        <audio id="audio4" src="sound4.mp3"></audio> 
+    </div>  -->
+
+    <script>
+        function playSound(audioId) {
+            let audio = document.getElementById(audioId);
+            audio.play();
+        }
+
+        function pauseSound(audioId) {
+            let audio = document.getElementById(audioId);
+            audio.pause();
+        }
+    </script>
+
+</body>
+</html>

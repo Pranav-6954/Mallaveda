@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    background: linear-gradient(270deg, #FFF6B7, #F6416C);
+}
+
+.video-container {
+    margin-bottom: 20px;
+}
+
+video {
+    width: 60%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-container {
+    margin-bottom: 20px;
+    border:2px solid black;
+    
+    text-align: center;
+    border-radius: 25px;
+    }
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

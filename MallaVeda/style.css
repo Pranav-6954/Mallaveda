@@ -374,32 +374,37 @@ nav li:first-child
     } */
 }
 
+
+
+
+
+
 .mental-health h1
 {
     font-weight: 700;
-    font-size: 80px;
+    font-size: 100px;
     text-align: center;
     color: #333333;
     position: relative;
-    top: 190px;
+    top: 70px;
 }
- 
+
 .m-cards
 {
     display: flex;
     flex-direction: row;
     justify-content: center;
     position: relative;
-    top: 180px;
+    position: relative;
+    top: 75px;
 }
-
 .m-activity
 {
     border:2px solid black;
     /* display:inline-block; */
     margin: 10px;
-    height: 425px;
-    width: 300px;
+    height: 400px;
+    width: 250px;
     border-radius: 5px;
     box-shadow: 0px 4px 8px black ;
     transition: 1s;
@@ -433,25 +438,17 @@ nav li:first-child
     box-shadow: 0px 4px 16px gold;
 }
 
-.contact_us
-{
-    position: relative;
-    bottom: -110px;
-}
-
-
-
 @media(max-width: 400px)
 {
     .mental-health h1
     {
         font-size: 40px;
         position: relative;
-        top: 25px;
+        top: -75px;
     }
     .m-activity
     {
-        height: 300px;
+        height: 250px;
         width: 100px;
         position: relative;
         top: -150px;
@@ -467,21 +464,21 @@ nav li:first-child
     }
     #one a
     {
-        font-size: 8.5px;
+        font-size: 8px;
         position: relative;
-        top: 35px;
+        top: -25px;
     }
     #two a
     {
         font-size: 8.5px;
         position: relative;
-        top: 9px;
+        top: 25px;
     }
     #three a
     {
         font-size: 8.5px;
         position: relative;
-        top: 15px;
+        top: 40px;
     }
     /* .disc a 
     {
@@ -490,6 +487,16 @@ nav li:first-child
         top: 15px;
     } */
 }
+
+
+
+
+
+
+
+
+
+
 
 
 .contact_us h1

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Strength.css">
+</head>
+<body>
+    
+    <h1>💪 Push-Ups Workout 💪</h1>
+
+    <div class="input-container-pu">
+        <label for="setMinutesPU">Set Time (Minutes): </label>
+        <input type="number" id="setMinutesPU" min="1" max="10" value="1">  
+        <button onclick="startPushUps()">Start Workout</button>
+    </div>
+
+    <div class="timer-pu" id="pushUpsTimer">⏳ Time Left: 00:00</div>
+
+    <div class="video-container-pu" id="videoSectionPU">
+        <video id="pushUpsVideo" width="400" controls loop>
+            <source src="ASSET/Push up.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="result-pu" id="calorieResultPU"></div>
+
+
+
+
+
+
+    <h1>🏋️‍♂️ Squats Workout 🏋️‍♀️</h1>
+
+    <div class="input-container">
+        <label for="setMinutesSQ">Set Time (Minutes): </label>
+        <input type="number" id="setMinutesSQ" min="1" max="10" value="1">  
+        <button onclick="startSquats()">Start Squats</button>
+    </div>
+
+    <div class="timer" id="squatsTimer">⏳ Time Left: 00:00</div>
+
+    <div class="video-container" id="videoSectionSQ">
+        <video id="squatsVideo" width="400" controls loop>
+            <source src="ASSET/squats.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="result" id="calorieResultSQ"></div>
+
+
+
+
+
+
+    <script src="Strength.js"></script>
+</body>
+</html>
