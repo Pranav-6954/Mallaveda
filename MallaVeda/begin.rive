@@ -5,13 +5,26 @@
 ! var creator = YourName
 
 // Substitutions for common phrases
-! sub i'm = i am
-! sub i've = i have
-! sub don't = do not
+! sub i'm     = i am
+! sub i'd     = i would
+! sub i've    = i have
+! sub i'll    = i will
+! sub don't   = do not
+! sub isn't   = is not
+! sub you'd   = you would
+! sub you're  = you are
+! sub you've  = you have
+! sub you'll  = you will
+! sub what's  = what is
+! sub whats   = what is
+! sub what're = what are
+! sub what've = what have
+! sub what'll = what will
+! sub who's   = who is
 
 // Greetings and Introductions
 + hello
-- Hello, I am <bot name>, your health assistant. How can I help you today?
+- Hello, I am MallaVeda, your health assistant. How can I help you today?
 
 + hi
 - Hi there! What health questions do you have?
