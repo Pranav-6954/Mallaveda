@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MallaVeda Health Assistant</title>
+  
+   <style>
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #fff; /* White background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header styling */
+  h1 {
+    background-color: #e60000; /* Bold red */
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Form container styling */
+  #formContainer {
+    background-color: #fff;
+    border: 2px solid #e60000;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #formContainer label {
+    font-weight: bold;
+  }
+  
+  #formContainer input[type="text"],
+  #formContainer input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #e60000;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  #formContainer input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #e60000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  #formContainer input[type="submit"]:hover {
+    background-color: #cc0000;
+  }
+  
+  /* Chat container styling */
+  #chatContainer {
+    background-color: #fff;
+    border: 2px solid #e60000;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #chatBox {
+    border: 1px solid #e60000;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  
+  /* Input and send button styling */
+  #userInput {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #e60000;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  #sendButton {
+    width: 15%;
+    padding: 10px;
+    background-color: #e60000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  #sendButton:hover {
+    background-color: #cc0000;
+  }
+  
+  /* Message styling */
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .message.user {
+    background-color: #ffe6e6; /* light red */
+    text-align: right;
+  }
+  
+  .message.bot {
+    background-color: #ffcccc; /* slightly darker light red */
+    text-align: left;
+  }
+  
+  </style>
+</head>
+<body>
+  <h1>Welcome to MallaVeda Health Assistant</h1>
+  
+  <!-- User Details Form -->
+  <div id="formContainer">
+    <form id="userDetailsForm">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required><br>
+      <label for="age">Age:</label><br>
+      <input type="number" id="age" name="age" required><br>
+      <label for="weight">Weight (kg):</label><br>
+      <input type="number" step="any" id="weight" name="weight" required><br>
+      <label for="height">Height (m):</label><br>
+      <input type="number" step="any" id="height" name="height" required><br><br>
+      <input type="submit" value="Start Chatting">
+    </form>
+  </div>
+  
+  <!-- Chat Interface -->
+  <div id="chatContainer">
+    <div id="chatBox"></div>
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button id="sendButton">Send</button>
+  </div>
+  
+  
+  
+  <!-- Load RiveScript Library from CDN -->
+  <script src="https://unpkg.com/rivescript@latest/dist/rivescript.min.js"></script>
+  <script src="script2.js" defer></script>
+</body>
+</html>

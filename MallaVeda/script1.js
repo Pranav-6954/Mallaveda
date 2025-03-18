@@ -1,6 +1,6 @@
  const bot = new RiveScript();
 
-bot.loadFile("./brains.rive").then(loading_done);
+bot.loadFile("begin1.rive").then(loading_done);
 
 function loading_done() {
     bot.sortReplies();

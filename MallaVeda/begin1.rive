@@ -25,7 +25,6 @@
 // -------------------------
 > begin
     + request
-    * <get weight> != undefined & <get height> != undefined => <call>calorBMI <get weight> <get height> <id></call>
     - {ok}
 < begin
 
@@ -37,18 +36,6 @@
 + hi bot
 - Hi there! You can ask me for a physical workout plan, mental health advice, or a diet plan.
 
-+ what is my name
-* <get name> == undefined => You never told me your name
- - Hello, <get name>! How can I help you with your health today?
-+ what is my age
-* <get age> == undefined => You never told me your name
-- You are <get age> years old.
-+ what is my weight
-* <get weight> == undefined => You never told me your name
-- Your weight is <get weight> kg.
-+ what is my height
-* <get height> == undefined => You never told me your name
-- Your height is <get height> m.
 
 
 // -------------------------
@@ -57,11 +44,10 @@
 
 // General triggers for physical/exercise plan
 +i need a physical plan
-*<get age> > 60 =>Please begin with this: <a href="Yoga.html" target="_blank">Yoga</a>
--Sure! Choose any plan from the below webistes. <br>
-^<a href="Aerobic.html" target="_blank">Aerobic plan</a> <br>
-^<a href="Strength.html" target="_blank">Strength plan</a> <br>
-^<a href="Yoga.html" target="_blank">Yoga</a>
+-Sure! Choose any plan from the home page. \n
+^Aerobic plan,\n
+^Strength plan or \n
+^Yoga
 
 
 +i want an exercise plan
@@ -72,8 +58,7 @@
 @i need a physical plan
 
 // Asking for physical details
-+(*) (bmi)(*)
-- <get bmi>
+
 // Edge cases for physical plan
 + i feel too tired to exercise
 - It’s important to listen to your body. Consider a light activity like stretching or a gentle yoga session, and make sure you get enough rest.
@@ -90,21 +75,19 @@
 // MENTAL HEALTH SECTION
 // -------------------------
 + i need mental health advice
-- I'm here to help. Would you like to try {random}<a href="sound.html" target="_blank">Sound healing</a>|<a href="Meditation.html" target="_blank">Meditation</a>| <a href="sleep.html" target="_blank">Sleep meditation</a>{/random} techniques?
+- I'm here to help. Would you like to try Sound healing,Meditation or Sleep meditation techniques?
 + mental health advice
-- Sure. How are you feeling? If you're stressed, anxious, or down, techniques like {random}<a href="sound.html" target="_blank">Sound healing</a>|<a href="Meditation.html" target="_blank">Meditation</a>| <a href="sleep.html" target="_blank">Sleep meditation</a>{/random} might help.
+@i need mental health advice
 + i feel depressed
-- I'm sorry you're feeling depressed. Sometimes, a short guided meditation or talking with a trusted friend can help. Consider also seeking professional support.
+@i need mental health advice
 + i feel anxious
-- Anxiety can be challenging. Have you tried {random}<a href="sound.html" target="_blank">Sound healing</a>|<a href="Meditation.html" target="_blank">Meditation</a>| <a href="sleep.html" target="_blank">Sleep meditation</a>{/random} They may help calm your mind.
-+ i feel stressed
-- Stress is common. You might benefit from a brief session of {random}<a href="sound.html" target="_blank">Sound healing</a>|<a href="Meditation.html" target="_blank">Meditation</a>| <a href="sleep.html" target="_blank">Sleep meditation</a>{/random}. Even 5-10 minutes can sometimes help.
+@i need mental health advice
 + mental plan
-- I can provide mental health tips. Would you like to try one of these techniques: {random}<a href="sound.html" target="_blank">Sound healing</a>|<a href="Meditation.html" target="_blank">Meditation</a>| <a href="sleep.html" target="_blank">Sleep meditation</a>{/random}?
-+ i need to relax
-- To relax, you might try sitting quietly with deep breaths, listening to calming music, or doing a short meditation. Which sounds good to you?
+@i need mental health advic
+e+ i need to relax
+@i need mental health advice
 +[*] (insomnia|sleep) [*]
--Try <a href="sleep.html" target="_blank">Sleep meditation</a>
+-Try Sleep meditation
 
 // Additional edge-case triggers for mental health
 + help me calm down
@@ -115,9 +98,7 @@
 // DIET PLAN SECTION
 // -------------------------
 + i need a diet plan
-*<get bmi> < 18.5 => Calories are  <get calories>
-*<get bmi> < 25 => Calories are  <get calories>
--Calories are  <get calories>
+-Please go to diet page
 
 
 
@@ -164,27 +145,3 @@
 
 
 
-
-> object calorBMI javascript
-   var username = rs.currentUser();
-    var weight = parseFloat(args[0]);
-    var height = parseFloat(args[1]);
-     if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-        return "Error: Please enter valid weight and height first.";
-    }
-    if (height <= 0) {
-        return "Invalid height provided.";
-    }
-    var bmi = weight / (height * height);
-    rs.setUservar(username, "bmi", bmi.toFixed(2));
-    var calories;
-    if (bmi < 18.5) {
-        calories = 2500;
-    } else if (bmi < 25) {
-        calories = 2000;
-    } else {
-        calories = 1800;
-    }
-    rs.setUservar(username, "calories", calories);
-    return "Your BMI is " + bmi.toFixed(2) + " and your recommended daily calorie intake is " + calories + " kcal.";
-< object
