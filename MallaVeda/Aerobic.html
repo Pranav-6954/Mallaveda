@@ -10,16 +10,18 @@
 
 
     <h1>🏃 Running Tracker 🏃</h1>
-    <div class="container">
+    <div class="running-container">
         
-        <div class="tracker">
-            <p>Time: <span id="run-time">00:00:00</span></p>
-            <p>Distance: <span id="run-distance">0</span> km</p>
-            <p>Calories Burned: <span id="run-calories">0</span> kcal</p>
+        <div class="running-controls">
+            <button id="start-run" class="start-btn">Start Run</button>
+            <button id="stop-run" class="stop-btn" disabled>Stop Run</button>
+            <button id="reset-run" class="reset-btn" disabled>Reset</button>
         </div>
-        <button id="run-start">Start</button>
-        <button id="run-stop" disabled>Stop</button>
-        <button id="run-reset" disabled>Reset</button>
+        <div class="running-stats">
+                 <span id="run-time">Time: 00:00:00</span> |
+                 <span id="run-distance">Distance: 0.00 km</span> |
+            🔥 <span id="run-calories">Calories: 0 kcal</span>
+        </div>
     </div>
 
 
