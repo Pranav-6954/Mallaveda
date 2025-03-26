@@ -5,57 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Strength.css">
+    <link rel="icon" href="Malla_Veda__1_-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose"></script>
+
 </head>
 <body>
+    <h1>Squat Counter</h1>
+    <video id="video" width="640" height="480" autoplay style="display: none;"></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <div class="counter">
+        <p>Squats: <span id="squatCount">0</span></p>
+        <p>Calories Burned: <span id="calories">0</span> kcal</p>
+    </div>
+
+    <div class="controls">
+        <button class="start-btn" onclick="startSquatTracking()">Start</button>
+        <button class="stop-btn" onclick="stopSquatTracking()">Stop</button>
+
+
+
+
+
     
-    <h1>💪 Push-Ups Workout 💪</h1>
 
-    <div class="input-container-pu">
-        <label for="setMinutesPU">Set Time (Minutes): </label>
-        <input type="number" id="setMinutesPU" min="1" max="10" value="1">  
-        <button onclick="startPushUps()">Start Workout</button>
+        <script src="Strength.js"></script>
     </div>
-
-    <div class="timer-pu" id="pushUpsTimer">⏳ Time Left: 00:00</div>
-
-    <div class="video-container-pu" id="videoSectionPU">
-        <video id="pushUpsVideo" width="400" controls loop>
-            <source src="ASSET/Push up.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <div class="result-pu" id="calorieResultPU"></div>
-
-
-
-
-
-
-    <h1>🏋️‍♂️ Squats Workout 🏋️‍♀️</h1>
-
-    <div class="input-container">
-        <label for="setMinutesSQ">Set Time (Minutes): </label>
-        <input type="number" id="setMinutesSQ" min="1" max="10" value="1">  
-        <button onclick="startSquats()">Start Squats</button>
-    </div>
-
-    <div class="timer" id="squatsTimer">⏳ Time Left: 00:00</div>
-
-    <div class="video-container" id="videoSectionSQ">
-        <video id="squatsVideo" width="400" controls loop>
-            <source src="ASSET/squats.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <div class="result" id="calorieResultSQ"></div>
-
-
-
-
-
-
-    <script src="Strength.js"></script>
 </body>
 </html>

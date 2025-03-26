@@ -1,91 +1,144 @@
-let countdownPU;
-        function startPushUps() {
-            let minutes = document.getElementById("setMinutesPU").value;
-            if (minutes <= 0) {
-                alert("Please enter a valid time in minutes!");
-                return;
+let squatCount = 0;
+        let isSquatting = false;
+        let detector;
+        let trackingActive = false;
+        let videoStream = null;
+
+        // Audio files
+        const startSound = new Audio('https://www.soundjay.com/button/beep-07.wav'); // Start beep
+        const squatBeep = new Audio('https://www.soundjay.com/button/beep-08b.wav'); // Squat counted beep
+
+        async function setupCamera() {
+            const video = document.getElementById('video');
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+            videoStream = stream;
+            video.style.display = "block"; // Show camera when starting
+        }
+
+        function stopCamera() {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                videoStream = null;
+                document.getElementById('video').style.display = "none"; // Hide camera when stopping
             }
+        }
 
-            let timeLeftPU = minutes * 60;
-            document.getElementById("pushUpsTimer").innerText = `⏳ Time Left: ${minutes}:00`;
-            document.getElementById("videoSectionPU").style.display = "block";
-            document.getElementById("pushUpsVideo").play();
+        async function loadPoseModel() {
+            detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet);
+        }
 
-            countdownPU = setInterval(() => {
-                timeLeftPU--;
-                let mins = Math.floor(timeLeftPU / 60);
-                let secs = timeLeftPU % 60;
-                document.getElementById("pushUpsTimer").innerText = `⏳ Time Left: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        function drawSkeleton(ctx, keypoints) {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.fillStyle = "red";
 
-                if (timeLeftPU <= 0) {
-                    clearInterval(countdownPU);
-                    document.getElementById("pushUpsTimer").innerText = "✅ Workout Complete!";
-                    document.getElementById("pushUpsVideo").pause();
-                    askForPushUps();
+            keypoints.forEach(point => {
+                if (point.score > 0.5) {
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+                    ctx.fill();
                 }
-            }, 1000);
+            });
         }
 
-        function askForPushUps() {
-            let pushUps = prompt("💥 How many push-ups did you complete?");
-            if (pushUps && !isNaN(pushUps)) {
-                let caloriesBurnedPU = (pushUps * 0.29).toFixed(2); // Approx 0.29 cal per push-up
-                document.getElementById("calorieResultPU").innerText = `🔥 You burned approximately ${caloriesBurnedPU} calories! 🔥`;
-                document.getElementById("calorieResultPU").style.display = "block";
-            } else {
-                alert("Please enter a valid number!");
+        function calculateCalories(squats) {
+            return (squats * 0.32).toFixed(2); // Rough estimate: 0.32 kcal per squat
+        }
+
+        function saveWorkoutHistory() {
+            localStorage.setItem('lastSquatCount', squatCount);
+            localStorage.setItem('lastCalories', calculateCalories(squatCount));
+        }
+
+        async function startSquatTracking() {
+            if (!trackingActive) {
+                trackingActive = true;
+                squatCount = 0;
+                document.getElementById('squatCount').innerText = 0;
+                document.getElementById('calories').innerText = 0;
+
+                // Fix sound autoplay issues by playing on user interaction
+                startSound.play().catch(error => console.log("Start sound blocked by browser:", error));
+
+                await setupCamera();
+                detectSquats();
             }
         }
 
+        function stopSquatTracking() {
+            trackingActive = false;
+            stopCamera();
+        }
 
+        async function detectSquats() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
 
+            setInterval(async () => {
+                if (!trackingActive) return;
 
+                const poses = await detector.estimatePoses(video);
+                if (poses.length > 0) {
+                    const keypoints = poses[0].keypoints;
+                    drawSkeleton(ctx, keypoints);
 
+                    // Get keypoints
+                    const leftHip = keypoints.find(p => p.name === 'left_hip');
+                    const leftKnee = keypoints.find(p => p.name === 'left_knee');
+                    const leftAnkle = keypoints.find(p => p.name === 'left_ankle');
 
+                    const rightHip = keypoints.find(p => p.name === 'right_hip');
+                    const rightKnee = keypoints.find(p => p.name === 'right_knee');
+                    const rightAnkle = keypoints.find(p => p.name === 'right_ankle');
 
+                    if (leftHip && leftKnee && leftAnkle && rightHip && rightKnee && rightAnkle) {
+                        const avgKneeY = (leftKnee.y + rightKnee.y) / 2;
+                        const avgHipY = (leftHip.y + rightHip.y) / 2;
+                        const avgAnkleY = (leftAnkle.y + rightAnkle.y) / 2;
 
+                        // Squat detection: Knees should drop significantly below hips
+                        if (avgKneeY > avgHipY + 60 && avgKneeY < avgAnkleY) {
+                            isSquatting = true;
+                        } 
+                        // Stand-up detection: Knees should rise above hip level again
+                        else if (isSquatting && avgKneeY < avgHipY - 10) {
+                            squatCount++;
+                            document.getElementById('squatCount').innerText = squatCount;
+                            document.getElementById('calories').innerText = calculateCalories(squatCount);
+                            saveWorkoutHistory();
 
+                            // Play squat beep with error handling
+                            squatBeep.play().catch(error => console.log("Squat beep blocked by browser:", error));
 
-
-
-
-
-
-        let countdownSQ;
-        function startSquats() {
-            let minutes = document.getElementById("setMinutesSQ").value;
-            if (minutes <= 0) {
-                alert("Please enter a valid time in minutes!");
-                return;
-            }
-
-            let timeLeft = minutes * 60;
-            document.getElementById("squatsTimer").innerText = `⏳ Time Left: ${minutes}:00`;
-            document.getElementById("videoSectionSQ").style.display = "block";
-            document.getElementById("squatsVideo").play();
-
-            countdownSQ = setInterval(() => {
-                timeLeft--;
-                let mins = Math.floor(timeLeft / 60);
-                let secs = timeLeft % 60;
-                document.getElementById("squatsTimer").innerText = `⏳ Time Left: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdownSQ);
-                    document.getElementById("squatsTimer").innerText = "✅ Workout Complete!";
-                    document.getElementById("squatsVideo").pause();
-                    askForSquats();
+                            isSquatting = false;
+                        }
+                    }
                 }
-            }, 1000);
+            }, 100);
         }
 
-        function askForSquats() {
-            let squats = prompt("🏋️‍♂️ How many squats did you complete?");
-            if (squats && !isNaN(squats)) {
-                let caloriesBurned = (squats * 0.4).toFixed(2);
-                document.getElementById("calorieResultSQ").innerText = `🔥 You burned approximately ${caloriesBurned} calories! 🔥`;
-                document.getElementById("calorieResultSQ").style.display = "block";
-            } else {
-                alert("Please enter a valid number!");
-            }
+        async function main() {
+            await loadPoseModel();
         }
+
+        main();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
