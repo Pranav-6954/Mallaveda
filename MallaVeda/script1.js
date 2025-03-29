@@ -1,11 +1,3 @@
- const bot = new RiveScript();
-
-bot.loadFile("begin1.rive").then(loading_done);
-
-function loading_done() {
-    bot.sortReplies();
-    console.log("Chatbot ready!");
-}
 
 function toggleChatbot() {
     const popup = document.getElementById("chatbot-popup");
@@ -19,27 +11,74 @@ function toggleChatbot() {
         toggleButton.style.display = "block";
     }
 }
-function checkEnter(event) {
-    if (event.key === "Enter") {
-        processUserMessage();
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("✅ JavaScript Loaded!");
+
+    let sendButton = document.getElementById("sendButton");
+    let userInput = document.getElementById("userInput");
+
+    if (sendButton) {
+        sendButton.addEventListener("click", sendMessage);
+        console.log("✅ Send button event attached!");
+    } else {
+        console.error("❌ Send button NOT FOUND!");
+    }
+
+    if (userInput) {
+        userInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    } else {
+        console.error("❌ User input field NOT FOUND!");
+    }
+});
+
+// ✅ Function to Send Messages to Backend
+async function sendMessage() {
+    let userMessage = document.getElementById("userInput").value.trim();
+    if (!userMessage) return;
+
+    addMessage("user", userMessage);
+    document.getElementById("userInput").value = "";
+
+    console.log("User message:", userMessage); // Debugging
+
+    try {
+        const response = await fetch("http://localhost:3000/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ userMessage })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Backend Response:", data);
+
+        const botReply = data.reply || "Sorry, I couldn't process your request.";
+        addMessage("bot", botReply);
+
+    } catch (error) {
+        console.error("❌ Error:", error);
+        addMessage("bot", `Error: ${error.message}`);
     }
 }
 
-function processUserMessage() {
-    const inputField = document.getElementById("chatbot-input");
-    const userMessage = inputField.value;
-    if (userMessage.trim() === "") return;
-    addMessageToChat("You", userMessage);
-    inputField.value = "";
-    bot.reply("local-user", userMessage).then(function(reply) {
-        addMessageToChat("Bot", reply);
-    });
-}
-function addMessageToChat(sender, message) {
-    const messagesDiv = document.getElementById("chatbot-messages");
-    const messageElement = document.createElement("div");
-    messageElement.className = sender === "You" ? "user-message" : "bot-reply";
-    messageElement.textContent = `${sender}: ${message}`;
-    messagesDiv.appendChild(messageElement);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+// ✅ Function to Display Messages in Chat
+function addMessage(who, message) {
+    let chatBox = document.getElementById("chatBox");
+    let msgDiv = document.createElement("div");
+    msgDiv.classList.add("message", who);
+    msgDiv.innerHTML = `<strong>${who.toUpperCase()}:</strong> ${message}`;
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
 }

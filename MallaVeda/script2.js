@@ -1,71 +1,45 @@
-let botReady = false;
-let bot = new RiveScript();
+const chatMessages = document.getElementById('chat-messages');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
 
-bot.loadFile("begin.rive").then(loading_done).catch(function(error) {
-    console.error("Error loading files:", error);
-});
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
 
-function loading_done() {
-    bot.sortReplies();
-    botReady = true;
-    console.log("Chatbot ready!");
-    // Optionally, enable the chat interface here.
-}
+        let chatHistory =[]; // To store the conversation history
 
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                appendMessage('user', message);
+                chatHistory.push({ role: 'user', parts: [{ text: message }] }); // Add user message to history
+                messageInput.value = '';
 
-function addMessage(who, message) {
-  var chatBox = document.getElementById("chatBox");
-  var msgDiv = document.createElement("div");
-  msgDiv.classList.add("message");
-  msgDiv.classList.add(who);
-  // Use innerHTML instead of textContent to render HTML in the reply
-  msgDiv.innerHTML = who.toUpperCase() + ": " + message;
-  chatBox.appendChild(msgDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
+                fetch('http://localhost:9000/chat', { // Updated backend endpoint
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ chat: message, history: chatHistory }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendMessage('bot', data.text); // Backend now returns { text: '...' }
+                    chatHistory.push({ role: 'model', parts: [{ text: data.text }] }); // Add bot response to history
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
+                    appendMessage('bot', 'Sorry, I encountered an error.');
+                });
+            }
+        }
 
-
-// Handle form submission
-document.getElementById("userDetailsForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  var name = document.getElementById("name").value;
-  var age = document.getElementById("age").value;
-  var weight = document.getElementById("weight").value;
-  var height = document.getElementById("height").value;
-  
-  // Set RiveScript user variables for user "localuser"
-  bot.setUservar("localuser", "name", name);
-  bot.setUservar("localuser", "age", age);
-  bot.setUservar("localuser", "weight", weight);
-  bot.setUservar("localuser", "height", height);
-  
-  document.getElementById("formContainer").style.display = "none";
-  document.getElementById("chatContainer").style.display = "block";
-  
-  addMessage("bot", "Hello " + name + "! Welcome to MallaVeda Health Assistant. Type 'hello' to begin.");
-});
-
-// Handle sending messages
-document.getElementById("sendButton").addEventListener("click", function() {
-  var input = document.getElementById("userInput");
-  var message = input.value;
-  if (message.trim() === "") return;
-  addMessage("user", message);
-  input.value = "";
-  
-  if (!botReady) {
-    addMessage("bot", "Please wait, I'm still getting ready...");
-    return;
-  }
-  
-  bot.reply("localuser", message).then(function(reply) {
-    addMessage("bot", reply);
-  });
-});
-
-// Allow Enter key to send messages
-document.getElementById("userInput").addEventListener("keyup", function(e) {
-  if (e.key === "Enter") {
-    document.getElementById("sendButton").click();
-  }
-});
+        function appendMessage(sender, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add(`${sender}-message`);
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;}
