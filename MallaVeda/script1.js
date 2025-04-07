@@ -1,84 +1,66 @@
-
 function toggleChatbot() {
     const popup = document.getElementById("chatbot-popup");
     const toggleButton = document.getElementById("chatbot-toggle");
 
     if (popup.style.display === "none" || popup.style.display === "") {
         popup.style.display = "block";
-        toggleButton.style.display = "none"; 
+        toggleButton.style.display = "none";
     } else {
         popup.style.display = "none";
         toggleButton.style.display = "block";
     }
 }
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("✅ JavaScript Loaded!");
+    const chatMessages = document.getElementById('chat-messages');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
 
-    let sendButton = document.getElementById("sendButton");
-    let userInput = document.getElementById("userInput");
-
-    if (sendButton) {
-        sendButton.addEventListener("click", sendMessage);
-        console.log("✅ Send button event attached!");
-    } else {
-        console.error("❌ Send button NOT FOUND!");
+    if (!chatMessages || !messageInput || !sendButton) {
+        console.error("❌ One or more elements not found in DOM");
+        return;
     }
 
-    if (userInput) {
-        userInput.addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                sendMessage();
-            }
-        });
-    } else {
-        console.error("❌ User input field NOT FOUND!");
+    sendButton.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    let chatHistory = [];
+
+    function sendMessage() {
+        const message = messageInput.value.trim();
+        if (message) {
+            appendMessage('user', message);
+            chatHistory.push({ role: 'user', parts: [{ text: message }] });
+            messageInput.value = '';
+
+            fetch('http://localhost:9000/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ chat: message, history: chatHistory }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    appendMessage('bot', data.text);
+                    chatHistory.push({ role: 'model', parts: [{ text: data.text }] });
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
+                    appendMessage('bot', 'Sorry, I encountered an error.');
+                });
+        }
+    }
+
+    function appendMessage(sender, text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add(`${sender}-message`);
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 });
-
-// ✅ Function to Send Messages to Backend
-async function sendMessage() {
-    let userMessage = document.getElementById("userInput").value.trim();
-    if (!userMessage) return;
-
-    addMessage("user", userMessage);
-    document.getElementById("userInput").value = "";
-
-    console.log("User message:", userMessage); // Debugging
-
-    try {
-        const response = await fetch("http://localhost:3000/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ userMessage })
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log("Backend Response:", data);
-
-        const botReply = data.reply || "Sorry, I couldn't process your request.";
-        addMessage("bot", botReply);
-
-    } catch (error) {
-        console.error("❌ Error:", error);
-        addMessage("bot", `Error: ${error.message}`);
-    }
-}
-
-// ✅ Function to Display Messages in Chat
-function addMessage(who, message) {
-    let chatBox = document.getElementById("chatBox");
-    let msgDiv = document.createElement("div");
-    msgDiv.classList.add("message", who);
-    msgDiv.innerHTML = `<strong>${who.toUpperCase()}:</strong> ${message}`;
-    chatBox.appendChild(msgDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}

@@ -46,19 +46,25 @@
             </ul>
         </nav>
     </div>
-   
-<button id="chatbot-toggle" onclick="toggleChatbot()">?</button>
+    
+    <script src="script1.js" defer></script>
+    <button id="chatbot-toggle" onclick="toggleChatbot()">?</button>
 
-<div id="chatbot-popup" class="chatbot-popup">
-    <div id="chatbot-header">
-        <span>MallaVeda</span>
-        <button onclick="toggleChatbot()">X</button>
+    <div id="chatbot-popup" style="display: none;">
+        <div id="chatbot-header">
+            <span>MallaVeda</span>
+            <button onclick="toggleChatbot()">X</button>
+        </div>
+        <div id="chat-messages">
+            <div class="bot-message">Hello! How can I help you today?</div>
+        </div>
+        <div id="input-area">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
     </div>
-    <div id="chatbot-messages"></div>
-    <input id="chatbot-input" type="text" placeholder="Type a message..." onkeypress="checkEnter(event)">
-</div>
-
-<script src="script1.js" defer></script>
+    
+        <script src="script1.js" defer></script>
 
     <div class="Home" id="Home">
         <div class="image">

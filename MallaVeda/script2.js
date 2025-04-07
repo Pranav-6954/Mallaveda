@@ -40,6 +40,58 @@ const chatMessages = document.getElementById('chat-messages');
         function appendMessage(sender, text) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add(`${sender}-message`);
-            messageDiv.textContent = text;
+            messageDiv.classList.add('chat-message');
+        
+            // Apply different styling based on the sender
+            if (sender === 'user') {
+                messageDiv.textContent = `You: ${text}`;
+            } else {
+                messageDiv.textContent = `AI: ${text}`;
+            }
+        
             chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;}
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+       
+            document.querySelectorAll('.quick-reply').forEach(button => {
+                button.addEventListener('click', () => {
+                  const message = button.textContent;
+                  document.getElementById('message-input').value = message;
+                  sendMessage();
+                });
+              });
+              
+              function submitForm() {
+                const name = document.getElementById('name').value.trim();
+                const age = document.getElementById('age').value.trim();
+                const gender = document.getElementById('gender').value.trim();
+                const height = document.getElementById('height').value.trim();
+                const weight = document.getElementById('weight').value.trim();
+                if (name && age && gender && height && weight) {
+                  const message = `User Information:\nName: ${name}\nAge: ${age}\nGender: ${gender}\nWeight:${weight}\nHeight:${height}`;
+                  document.getElementById('formContainer').style.display = 'none';
+                  document.getElementById('chat-container').style.display = 'block';
+              
+                  appendMessage('user', message);
+                  chatHistory.push({ role: 'user', parts: [{ text: message }] });
+              
+                  fetch('http://localhost:9000/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat: message, history: chatHistory }),
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                    appendMessage('bot', data.text);
+                    chatHistory.push({ role: 'model', parts: [{ text: data.text }] });
+                  })
+                  .catch(error => {
+                    console.error('Error sending message:', error);
+                    appendMessage('bot', 'Sorry, I encountered an error.');
+                  });
+                } else {
+                  alert("Please fill all fields!");
+                }
+              }
+              
